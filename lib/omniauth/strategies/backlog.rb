@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'omniauth-oauth2'
 
 
@@ -18,6 +19,10 @@ module OmniAuth
         :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil
       }
 
+      def setup_phase
+        self.options.space_id ||= session.delete('omniauth.backlog.space_id')
+      end
+      
       def deep_symbolize(options)
         hash = super(options)
         if ! hash.has_key?(:site)
