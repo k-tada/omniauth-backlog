@@ -20,7 +20,7 @@ module OmniAuth
       }
 
       def setup_phase
-        self.options.space_id ||= session.delete('omniauth.backlog.space_id')
+        self.options.space_id = session['omniauth.backlog.space_id'] if session['omniauth.backlog.space_id'].present?
       end
       
       def deep_symbolize(options)
